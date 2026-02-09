@@ -5,35 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>黒木のポートフォリオ</title>
     <style>
-        /* ここに円の見た目と動きの指示を書きます */
         body {
             margin: 0;
-            background-color: #f0f0f0;
-            overflow-x: hidden; /* 横に突き抜けた円でスクロールバーが出ないようにする */
+            background-color: #f8f9fa;
+            overflow-x: hidden;
             font-family: sans-serif;
             padding: 20px;
         }
 
+        /* 円の共通設定 */
         .circle {
-            width: 50px;
-            height: 50px;
-            background-color: #3498db;
             border-radius: 50%;
-            position: fixed; /* 画面に対して固定 */
-            top: 50%;        /* 上から50%の位置 */
-            z-index: -1;     /* 文字の背面に配置 */
-            animation: move-right 5s linear infinite;
+            position: fixed;
+            z-index: -1;
+            opacity: 0.6; /* 少し透けさせておしゃれに */
+            animation: move-right linear infinite;
+        }
+
+        /* 1つ目の円（青・標準） */
+        .c1 {
+            width: 60px;
+            height: 60px;
+            background-color: #3498db;
+            top: 20%;
+            animation-duration: 8s; /* 8秒で右へ */
+        }
+
+        /* 2つ目の円（ピンク・速め） */
+        .c2 {
+            width: 40px;
+            height: 40px;
+            background-color: #ff7f50;
+            top: 50%;
+            animation-duration: 5s; /* 5秒で右へ */
+            animation-delay: 1s;    /* 1秒遅れてスタート */
+        }
+
+        /* 3つ目の円（黄色・ゆっくり） */
+        .c3 {
+            width: 80px;
+            height: 80px;
+            background-color: #f1c40f;
+            top: 80%;
+            animation-duration: 12s; /* 12秒でゆっくり */
+            animation-delay: 2s;
         }
 
         @keyframes move-right {
-            0% { left: -60px; }
+            0% { left: -100px; }
             100% { left: 100%; }
         }
+
+        /* テーブルを見やすくするための少しの装飾 */
+        table { border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #eee; }
     </style>
 </head>
 <body>
 
-    <div class="circle"></div>
+    <div class="circle c1"></div>
+    <div class="circle c2"></div>
+    <div class="circle c3"></div>
 
     <h1>黒木</h1>
 
@@ -52,22 +85,10 @@
 
     <h3>Skills</h3>
     <table>
-      <tr>
-        <th>OS</th>
-        <td>Windows, Ubuntu など</td>
-      </tr>
-      <tr>
-        <th>Engine, Frameworks</th>
-        <td>Node.js, Express など</td>
-      </tr>
-      <tr>
-        <th>Tool, MiddleWare</th>
-        <td>Git, PostgreSQL など</td>
-      </tr>
-      <tr>
-        <th>資格・免許</th>
-        <td>現在該当なし</td>
-      </tr>
+      <tr><th>OS</th><td>Windows, Ubuntu など</td></tr>
+      <tr><th>Engine, Frameworks</th><td>Node.js, Express など</td></tr>
+      <tr><th>Tool, MiddleWare</th><td>Git, PostgreSQL など</td></tr>
+      <tr><th>資格・免許</th><td>現在該当なし</td></tr>
     </table>
 
     <h3>History</h3>
