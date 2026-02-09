@@ -13,70 +13,69 @@
             padding: 20px;
         }
 
-        /* 円の共通設定 */
+        /* 円の基本スタイル */
         .circle {
             border-radius: 50%;
             position: fixed;
+            left: -150px; /* 画面の外からスタート */
             z-index: -1;
-            opacity: 0.6; /* 少し透けさせておしゃれに */
+            opacity: 0.4;
+            pointer-events: none; /* 円がクリックの邪魔をしないようにする */
             animation: move-right linear infinite;
         }
 
-        /* 1つ目の円（青・標準） */
-        .c1 {
-            width: 60px;
-            height: 60px;
-            background-color: #3498db;
-            top: 20%;
-            animation-duration: 8s; /* 8秒で右へ */
-        }
-
-        /* 2つ目の円（ピンク・速め） */
-        .c2 {
-            width: 40px;
-            height: 40px;
-            background-color: #ff7f50;
-            top: 50%;
-            animation-duration: 5s; /* 5秒で右へ */
-            animation-delay: 1s;    /* 1秒遅れてスタート */
-        }
-
-        /* 3つ目の円（黄色・ゆっくり） */
-        .c3 {
-            width: 80px;
-            height: 80px;
-            background-color: #f1c40f;
-            top: 80%;
-            animation-duration: 12s; /* 12秒でゆっくり */
-            animation-delay: 2s;
-        }
-
         @keyframes move-right {
-            0% { left: -100px; }
-            100% { left: 100%; }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(100vw + 300px)); }
         }
 
-        /* テーブルを見やすくするための少しの装飾 */
-        table { border-collapse: collapse; margin-top: 10px; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background-color: #eee; }
+        /* コンテンツを見やすくする */
+        h1, h2, h3, p, ul, table {
+            position: relative;
+            background: rgba(255, 255, 255, 0.7); /* 背景を少し白くして文字を読みやすく */
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block; /* 背景を文字の長さに合わせる */
+        }
+        table { display: table; }
     </style>
 </head>
 <body>
 
-    <div class="circle c1"></div>
-    <div class="circle c2"></div>
-    <div class="circle c3"></div>
+    <script>
+        const colors = ['#3498db', '#ff7f50', '#f1c40f', '#2ecc71', '#9b59b6', '#e74c3c'];
+        const numCircles = 25; // ここで個数を自由に変えられます
 
-    <h1>黒木</h1>
+        for (let i = 0; i < numCircles; i++) {
+            const circle = document.createElement('div');
+            circle.className = 'circle';
+            
+            // ランダムな設定を計算
+            const size = Math.floor(Math.random() * 80) + 20; // 20px〜100px
+            const top = Math.floor(Math.random() * 100);     // 0%〜100%
+            const duration = Math.random() * 10 + 5;         // 5秒〜15秒
+            const delay = Math.random() * 10;                // 0秒〜10秒
+            const color = colors[Math.floor(Math.random() * colors.length)];
 
-    <h2>About</h2>
-    <p>
-      初めまして、黒木といいます！<br>
-      いつかは親の手伝いとして、何かしらのお店を経営してみたいと思っています。
-    </p>
+            // スタイルを適用
+            circle.style.width = `${size}px`;
+            circle.style.height = `${size}px`;
+            circle.style.top = `${top}%`;
+            circle.style.backgroundColor = color;
+            circle.style.animationDuration = `${duration}s`;
+            circle.style.animationDelay = `-${delay}s`; // マイナスにすると最初から画面内に現れる
 
-    <h3>Profile</h3>
+            document.body.appendChild(circle);
+        }
+    </script>
+
+    <br>
+    <h1>黒木</h1><br>
+
+    <h2>About</h2><br>
+    <p>初めまして、黒木といいます！<br>いつかは親の手伝いとして、何かしらのお店を経営してみたいと思っています。</p>
+
+    <h3>Profile</h3><br>
     <ul>
       <li>名前 黒木</li>
       <li>所在地 福岡県</li>
@@ -94,14 +93,8 @@
     <h3>History</h3>
     <p>学歴</p>
     <table>
-      <tr>
-        <th>2025年 春</th>
-        <td><a href="https://dwango.co.jp/">ZEN大学</a> 入学</td>
-      </tr>
-      <tr>
-        <th>上記同時期</th>
-        <td>学校法人角川ドワンゴ学園 <a href="https://nnn.ed.jp/">S高等学校</a> 卒業</td>
-      </tr>
+      <tr><th>2025年 春</th><td><a href="https://dwango.co.jp/">ZEN大学</a> 入学</td></tr>
+      <tr><th>上記同時期</th><td>学校法人角川ドワンゴ学園 <a href="https://nnn.ed.jp/">S高等学校</a> 卒業</td></tr>
     </table>
 
 </body>
